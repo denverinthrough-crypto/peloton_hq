@@ -1,0 +1,27 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}Teams - Peloton HQ{% endblock %}
+
+{% block content %}
+    <h1>Tour de France Teams</h1>
+
+    <!-- Loop through every team sent from views.py -->
+     {% for team in teams %}
+        <div>
+            <!-- Display each team's info -->
+             <!-- Team name is now a clickable link to the detail page -->
+            <h2>
+                <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
+            </h2>
+
+            
+
+        </div>
+        <hr>
+    {% empty %}
+        <!-- This shows if there are no teams in the database -->
+         <p>No teams found.</p>
+    {% endfor %}
+
+    
+{% endblock %}

@@ -1,0 +1,87 @@
+/* ══════════════════════════════════════
+   PELOTON HQ — main stylesheet
+   ══════════════════════════════════════ */
+
+/* ── Race grid ─────────────────────────── */
+
+.race-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.race-card {
+    background: #fff;
+    border: 1px solid #e0ddd6;
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.race-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.race-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.race-meta {
+    font-size: 12px;
+    color: #888;
+    margin: 2px 0 0;
+}
+
+.race-type-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #e6f1fb;
+    color: #0c447c;
+}
+
+.race-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid #f0ede6;
+    padding-top: 10px;
+}
+
+.race-stat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.stat-label { color: #888; }
+.stat-value { color: #1a1a1a; font-weight: 500; }
+
+.race-card-footer {
+    border-top: 1px solid #f0ede6;
+    padding-top: 10px;
+}
+
+.race-card-footer a {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #185fa5;
+    text-decoration: none;
+    border: 1px solid #e0ddd6;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.race-card-footer a:hover {
+    background: #f5f5f0;
+}

@@ -1,0 +1,65 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}{{ race }} — Results{% endblock %}
+
+{% block content %}
+
+<h1>{{ race }}</h1>
+<h2>Race Results</h2>
+
+{% if results %}
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Rider</th>
+            <th>Team</th>
+            <th>Status</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+        <tr>
+            <!-- Position column -->
+            <td>
+                {% if result.finish_status == 'FIN' %}
+                    {% if result.finishing_position == 1 %}🥇
+                    {% elif result.finishing_position == 2 %}🥈
+                    {% elif result.finishing_position == 3 %}🥉
+                    {% else %}{{ result.finishing_position }}
+                    {% endif %}
+                {% else %}
+                    —
+                {% endif %}
+            </td>
+
+            <!-- Rider name -->
+            <td>{{ result.rider.full_name }}</td>
+
+            <!-- Team name -->
+            <td>{{ result.rider.team.name }}</td>
+
+            <!-- Status -->
+            <td>{{ result.finish_status }}</td>
+
+            <!-- Time column -->
+            <td>
+                {% if result.finish_status != 'FIN' %}
+                    —
+                {% elif result.finishing_position == 1 %}
+                    {{ result.formatted_time }}
+                {% else %}
+                    {{ result.time_gap }}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+    <p>No results recorded for this race yet.</p>
+{% endif %}
+
+{% endblock %}

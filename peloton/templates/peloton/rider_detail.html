@@ -1,0 +1,35 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}{{ team.name }} — Peloton HQ{% endblock %}
+
+{% block content %}
+
+
+    
+
+    <h1>{{ rider.full_name }}</h1>
+
+    <p><strong>Team:
+        <a href="{% url 'team_detail' rider.team.pk %}">{{ rider.team }}</a>
+    </strong>
+        
+    </p>
+    <p><strong>Nationality:</strong> {{ rider.nationality }}</p>
+    <p><strong>Age:</strong> {{ rider.age }}</p>
+    <p><strong>Date of Birth:</strong> {{ rider.date_of_birth }}</p>
+    <p><strong>Height:</strong> {{ rider.height }}m</p>
+    <p><strong>Weight:</strong> {{ rider.weight }}kg</p>
+    <p><strong>BMI:</strong> {{ rider.bmi }}</p>
+
+    <p><strong>Specialties:</strong>
+        {% for specialty in rider.specialties.all %}
+            {{ specialty.name }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            None listed
+        {% endfor %}
+    </p>
+
+    
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}Races{% endblock %}
+
+{% block content %}
+
+<h1>Races</h1>
+
+{% if races %}
+<div class="race=grid">
+    {% for race in races %}
+    <div class="race-card">
+
+        <div class="'race-card-header">
+            <div>
+                <p class="race-name">{{ race }}</p>
+                <p class="race-meta">{{ race.year }} - {{ race.country }}</p>
+            </div>
+            <span class="race-type-badge">{{ race.get_race_type_display }}</span>
+        </div>
+
+        <div class ="race-card-body">
+            <div class="race-stat">
+                <span class="'stat-labe">Terrain</span>
+                <span class="stat-value">
+                    {{ race.get_terrain_type_display }}
+                    {% if race.has_cobbles %} + cobbles{% endif %}
+                </span>
+            </div>
+
+            <div class="race-stat">
+                <span class="stat-label">Distance</span>
+                <span class="stat-value">
+                    {% if race.distance_km %}{{ race.distanc_km }} km{% else %}-{% endif %}
+                </span>
+            </div>
+
+            <div class="race-stat">
+                <span class="stat-label">Weather</span>
+                <span class="stat-value">{{ race.get_weather_display }}</span>
+            </div>
+        </div>
+
+        <div class="race-card-footer">
+            <a href="{% url 'race_results' race.pk %}">View results</a>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<p>NO races found.</p>
+{% endif %}
+
+{% endblock %}

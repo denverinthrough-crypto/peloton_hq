@@ -1,0 +1,55 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}{{ team.name }} — Peloton HQ{% endblock %}
+
+{% block content %}
+
+
+    <h1>All Riders</h1>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Team</th>
+                <th>Nationality</th>
+                <th>Age</th>
+                <th>Specialties</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rider in riders %}
+            <tr>
+                <!-- Rider name links to their detail page -->
+                <td>
+                    <a href="{% url 'rider_detail' rider.pk %}">{{ rider.full_name }}</a>
+                </td>
+
+                <!-- Team name links to the team detail page -->
+                <td>
+                    <a href="{% url 'team_detail' rider.team.pk %}">{{ rider.team }}</a>
+                </td>
+
+                <td>{{ rider.nationality }}</td>
+                <td>{{ rider.age }}</td>
+
+                <!-- Loop through all specialties for this rider -->
+                <td>
+                    {% for specialty in rider.specialties.all %}
+                        {{ specialty.name }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        None
+                    {% endfor %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No riders found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+{% endblock %}

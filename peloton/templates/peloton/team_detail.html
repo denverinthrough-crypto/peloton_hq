@@ -1,0 +1,44 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}{{ team.name }} — Peloton HQ{% endblock %}
+
+{% block content %}
+
+    
+
+     <h1>{{ team.name }}</h1>
+     <p>Nationality: {{ team.nationality }}</p>
+     <p>Bike Brand: {{ team.bike_brand }}</p>
+
+     <hr>
+
+    <h2>Team Roster</h2>
+    
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Rider Name</th>
+                <th>Nationality</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rider in team.riders.all %}
+            <tr>
+                <td>
+                    <a href="{% url 'rider_detail' rider.pk %}">
+                        {{ rider.full_name }}
+                    </a>
+                </td>
+                <td>{{ rider.nationality }}</td>
+                <td>{{ rider.age }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No riders assigned to this team yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

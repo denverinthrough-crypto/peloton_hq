@@ -1,0 +1,22 @@
+{% extends 'peloton/base.html' %}
+
+{% block title %}Home - Peloton HQ{% endblock %} 
+
+{% block content %}
+
+    <h1>🚴 Welcome to Peloton HQ</h1>
+    <p>Your cycling team and rider database.</p>
+
+    <hr>
+
+    <h2>Database Summary</h2>
+    <p>Teams: {{ team_count }}</p>
+    <p>Riders: {{ rider_count }}</p>
+
+    <br>
+    <a href="{% url 'all_teams' %}">View All Teams</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="{% url 'all_riders' %}">View All Riders</a>
+    
+
+{% endblock %}
